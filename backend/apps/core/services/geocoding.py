@@ -29,6 +29,8 @@ class GeocodingService:
                 return GeocodingService._geocode_google(full_address)
             except Exception as e:
                 logger.error(f"Google geocoding failed: {e}")
+                # No fallback if Google fails and no OSM result
+                return None
         
         return None
     
@@ -76,14 +78,21 @@ class GeocodingService:
         data = response.json()
         if data['status'] == 'OK' and data['results']:
             result = data['results'][0]
-            location = result['geometry']['location']
-            return {
-                'latitude': location['lat'],
-                'longitude': location['lng'],
-                'formatted_address': result['formatted_address'],
-                'source': 'google'
-            }
-        return None
+            # Verificar que la estructura de la respuesta sea la esperada
+            if 'geometry' in result and 'location' in result['geometry']:
+                location = result['geometry']['location']
+                return {
+                    'latitude': location['lat'],
+                    'longitude': location['lng'],
+                    'formatted_address': result['formatted_address'],
+                    'source': 'google'
+                }
+            else:
+                logger.error(f"Respuesta de Google Maps incompleta: falta geometry/location en {result}")
+                return None
+        else:
+            logger.error(f"Google Maps API error: {data['status']}")
+            return None
 
 class DistanceMatrixService:
     """Servicio para calcular distancias entre múltiples puntos"""
