@@ -10,7 +10,7 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
     ports:
-      - "5432:5432"
+      - "5433:5432"
 
   redis:
     image: redis:7-alpine
@@ -27,6 +27,7 @@ services:
     environment:
       - DEBUG=1
       - DB_HOST=db
+      - DB_PORT=5432
       - DB_NAME=rutas_rd
       - DB_USER=rutas_rd_user
       - DB_PASSWORD=secure_password_2024
