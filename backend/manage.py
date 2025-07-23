@@ -2,11 +2,23 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
+from pathlib import Path
+import dotenv
 
 
 def main():
     """Run administrative tasks."""
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
+    # Load environment variables from .env file
+    env_path = Path(__file__).parent / '.env'
+    print(f"Loading environment from: {env_path}")
+    dotenv.load_dotenv(dotenv_path=env_path)
+    
+    # Debug: Print some important environment variables
+    print("DEBUG - Environment variables:")
+    for var in ['DB_NAME', 'DB_USER', 'DB_PASSWORD', 'DB_HOST', 'DB_PORT']:
+        print(f"{var} = {os.getenv(var, 'NOT SET')}")
+    
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings.development')
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
