@@ -10,6 +10,10 @@ sleep 5
 echo "Applying database migrations..."
 python manage.py migrate --noinput
 
+# Crear superusuario si no existe
+echo "Creating superuser if needed..."
+python create_superuser.py
+
 # Iniciar el servidor
 echo "Starting server..."
 exec "$@"

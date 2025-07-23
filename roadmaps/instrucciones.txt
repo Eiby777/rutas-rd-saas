@@ -1,0 +1,85 @@
+## Proyecto SaaS: Optimización de Rutas de Entrega para PYMEs
+
+### 1. Descripción del problema
+
+La **última milla** (entrega del centro de operaciones al cliente final) representa hasta el **41 % de los costos logísticos** y suele ser la parte más ineficiente y costosa de toda la cadena de suministro([Business Insider](https://www.businessinsider.com/ai-transforms-last-mile-delivery-predictive-analytics-route-optimization-2025-7?utm_source=chatgpt.com)). En la República Dominicana, donde la orografía varía entre ciudades densas y zonas rurales con infraestructuras irregulares, muchas PYMEs de comercio electrónico, tiendas locales y servicios de mensajería propia:
+
+* Planifican rutas manualmente o con mapas genéricos, sin optimización real.
+* Sufren retrasos por tráfico, obras o rutas subóptimas.
+* Realizan múltiples viajes por zonas cercanas, aumentando combustible y horas-hombre.
+* No tienen visibilidad en tiempo real de sus repartidores, lo que impide reaccionar ante imprevistos.
+
+### 2. Quién lo sufre
+
+* **Tiendas online locales** que reparten pedidos en Santo Domingo, Santiago y otras provincias.
+* **Negocios con reparto propio** (panaderías, farmacias, floristerías) que entregan productos al día.
+* **Pequeñas empresas de mensajería** sin acceso a costosos sistemas ERP o TMS de grandes flotas.
+
+Según reportes, muchas PYMEs carecen de infraestructura (almacenes y recursos humanos) para gestionar eficientemente más de 20–30 entregas diarias, y dependen de hojas de cálculo o apps de navegación que no minimizan distancias ni tiempos de forma global.
+
+### 3. Por qué las soluciones actuales no bastan
+
+* **Sistemas empresariales** (Samsara, Verizon Connect) son caros, requieren hardware dedicado y contratos anuales, y están sobredimensionados para flotas pequeñas (10–50 vehículos)([TechRadar](https://www.techradar.com/reviews/verizon-connect?utm_source=chatgpt.com))([TechRadar](https://www.techradar.com/reviews/samsara?utm_source=chatgpt.com)).
+* **Apps genéricas de mapas** (Google Maps, Waze) permiten planificar de 10–20 puntos, pero no optimizan múltiples rutas simultáneas ni generan flujos de trabajo de entrega.
+* **Herramientas punto a punto** (Routific, Onfleet) tienen planes mínimos de suscripción de varios cientos de dólares al mes, lo que excede el presupuesto de la mayoría de negocios dominicanos.
+
+### 4. Propuesta de solución SaaS
+
+Un **SaaS web** monofuncional, de bajo coste y fácil adopción, enfocado exclusivamente en:
+
+1. **Optimización de rutas**
+
+   * Ingreso de direcciones (manualmente o mediante importación CSV).
+   * Algoritmo de optimización (Google OR-Tools en Python) que entregue:
+
+     * Ruta óptima por conductor (minimizando distancia y tiempo).
+     * División automática de entregas entre varios vehículos.
+
+2. **Seguimiento básico en tiempo real**
+
+   * App móvil ligera (o web móvil) para que el repartidor marque entregas completadas.
+   * Panel de control web para el administrador: visualización de ubicación aproximada y estado (“pendiente”, “en curso”, “entregado”, “incidencia”).
+
+3. **Notificaciones automatizadas**
+
+   * Envío de SMS o WhatsApp al cliente con horario estimado y confirmación de entrega.
+
+4. **Reportes sencillos**
+
+   * Distancia total recorrida, tiempo de viaje y entregas por ruta.
+   * Exportación a Excel para análisis contable y de eficiencia.
+
+> **Alcance acotado**: ninguna funcionalidad extra (facturación, CRM, inventario). Solo **planificación + seguimiento + notificaciones**.
+
+### 5. Por qué funcionaría en la República Dominicana
+
+* **Crecimiento del e-commerce**: más de 5 millones de usuarios de Internet y penetración superior al 50 % con fuerte enfoque en dispositivos móviles.
+* **Necesidad local**: la dispersión geográfica y el tráfico en Santo Domingo crean urgencia por optimizar rutas.
+* **Bajo coste**: modelo de suscripción mensual accesible (< 30 USD/vehículo), sin hardware adicional.
+* **Implementación rápida**: usando Python y frameworks web (Flask o Django), puedes lanzar un MVP en 2–3 meses.
+* **Ventaja competitiva**: casi no hay herramientas diseñadas para micro-flotas (< 10 vehículos) en el mercado dominicano.
+
+### 6. Tecnologías recomendadas
+
+| Componente       | Tecnología sugerida                        |
+| ---------------- | ------------------------------------------ |
+| Backend          | Python (Django o Flask)                    |
+| Algoritmo        | Google OR-Tools                            |
+| Base de datos    | PostgreSQL                                 |
+| Frontend         | React o Vue (opcional), Bootstrap/Tailwind |
+| API de mapas     | OpenStreetMap (gratuita) o Google Maps     |
+| App móvil ligera | PWA (Progressive Web App)                  |
+| Hosting          | Heroku / DigitalOcean / AWS Light          |
+
+### 7. Roadmap y MVP
+
+1. **Semana 1–2**: Definición de modelos de datos, configuración de proyecto y base de datos.
+2. **Semana 3–4**: Integración básica con API de mapas y OR-Tools; prueba de optimización estática.
+3. **Semana 5–6**: Panel web para creación de rutas y carga de direcciones.
+4. **Semana 7–8**: App móvil PWA para marcación de entregas e integración básica de notificaciones.
+5. **Semana 9–10**: Reportes y exportaciones; pruebas piloto con 1–2 negocios locales.
+6. **Semana 11–12**: Mejoras basadas en feedback, lanzamiento público beta.
+
+---
+
+Implementar este SaaS te permitirá aprovechar tu experiencia en **programación web** y **Python avanzado**, entregar rápidamente valor a microflotas dominicanas y escalar fácilmente a otros mercados de Latinoamérica con necesidades similares.

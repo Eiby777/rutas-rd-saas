@@ -32,6 +32,9 @@ services:
       - DB_USER=rutas_rd_user
       - DB_PASSWORD=secure_password_2024
       - REDIS_URL=redis://redis:6379/0
+      - DJANGO_SUPERUSER_USERNAME=admin
+      - DJANGO_SUPERUSER_EMAIL=admin@example.com
+      - DJANGO_SUPERUSER_PASSWORD=admin123
     depends_on:
       - db
       - redis
